@@ -7,13 +7,19 @@ import { bootstrapApplication } from '@angular/platform-browser';
   selector: 'my-app',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <h1>Hello from {{name}}!</h1>
-    <a target="_blank" href="https://angular.io/start">
-      Learn more about Angular 
-    </a>
-  `,
+  template: ``,
 })
-export class App {}
+export class App {
+  findSquare(start: number, end: number) {
+    // exit condition
+    if (start > end) {
+      return;
+    } else if (start % 2 == 0) {
+      console.log(start);
+    }
+    // call doSomething again
+    this.findSquare(start++, end);
+  }
+}
 
 bootstrapApplication(App);
