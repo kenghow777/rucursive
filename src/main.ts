@@ -1,6 +1,7 @@
 import 'zone.js/dist/zone';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { bootstrapApplication } from '@angular/platform-browser';
 
 @Component({
@@ -9,16 +10,20 @@ import { bootstrapApplication } from '@angular/platform-browser';
   imports: [CommonModule],
   template: ``,
 })
-export class App {
-  findSquare(start: number, end: number) {
-    // exit condition
-    if (start > end) {
-      return;
-    } else if (start % 2 == 0) {
-      console.log(start);
-    }
-    // call doSomething again
-    this.findSquare(start++, end);
+export class App implements OnInit {
+  ngOnInit(): void {
+    let categoryData = {
+      name: 'Main',
+      subCategories: [
+        { name: 'Sub1', subCategories: [] },
+        {
+          name: 'Sub2',
+          subCategories: [{ name: 'SubSub1', subCategories: [] }],
+        },
+      ],
+    };
+
+    this.form = this.createFormgroup(categoryData)
   }
 }
 
